@@ -11,6 +11,16 @@ public class BaseResponse {
         this.msg = msg;
     }
 
+    private boolean isSuccess;
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+
     private String msg;
 
     public String getCode() {

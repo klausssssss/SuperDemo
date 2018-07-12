@@ -1,26 +1,23 @@
 package com.demo.Repository.Base;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-@SuppressWarnings("unchecked")
 public abstract class BaseRepository<T,PK> implements  IBaseRepository<T,PK>{
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    Class<T> clazz;
+    private Class<T> clazz;
     @Autowired
     private JdbcTemplate jdbcTemplate;
     /**
