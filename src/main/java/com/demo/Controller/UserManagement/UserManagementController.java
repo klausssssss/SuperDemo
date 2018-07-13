@@ -30,4 +30,10 @@ public class UserManagementController {
     public LoginRes Register(@RequestBody @Valid LoginInfo req){
         return iUserManagementService.Register(req);
     }
+
+    @ApiOperation(value = "BatchInsert")
+    @RequestMapping(value = "/BatchInsert", method = RequestMethod.POST)
+    public void BatchInsert(){
+        iUserManagementService.BatchInsert();
+    }
 }

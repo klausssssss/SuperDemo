@@ -7,4 +7,5 @@ public interface IUserManagementService {
 
     LoginRes Login(LoginInfo req);
     LoginRes Register(LoginInfo req);
+    void BatchInsert();
 }

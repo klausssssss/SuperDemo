@@ -65,4 +65,8 @@ public class UserManagementService implements IUserManagementService {
         res.setMsg("注册成功");
         return res;
     }
+
+    public void BatchInsert(){
+        iUserRepositpry.BatchInsertTest();
+    }
 }
