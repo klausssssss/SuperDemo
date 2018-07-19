@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 @Configuration
 @PropertySource(value = "classpath:application.properties",encoding="utf-8")
-public class MySQL {
+public class MySQLConfig {
 
     //private Logger logger = LoggerFactory.getLogger(MySQL.class);
 

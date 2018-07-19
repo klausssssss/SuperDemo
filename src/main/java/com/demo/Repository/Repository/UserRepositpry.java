@@ -6,12 +6,21 @@ import com.demo.Model.UserManagement.User;
 import com.demo.Repository.Base.BaseRepository;
 import com.demo.Repository.IRepository.IUserRepositpry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepositpry extends BaseRepository<User, String> implements IUserRepositpry {
     @Autowired
     public ISqlHelper iSqlHelper;
+    @Autowired
+    private StringRedisTemplate template;
+
+    public void setKey(String key,String value){
+         ValueOperations<String, String> ops = template.opsForValue();
+        ops.set(key,value);
+    }
 
     public User findUserInfo(String userName, String passWord) {
         return iSqlHelper.Select("*")
