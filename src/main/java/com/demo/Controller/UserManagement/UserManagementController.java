@@ -26,17 +26,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/UserManagement")
 public class UserManagementController {
-
+    @Autowired
     private IUserManagementService iUserManagementService;
-
+    @Autowired
     private IUserRepositpry iUserRepositpry;
 
-    @Autowired
-    private UserManagementController(IUserManagementService IUserManagementService
-    ,IUserRepositpry IUserRepositpry){
-        iUserManagementService = IUserManagementService;
-        iUserRepositpry = IUserRepositpry;
-    }
+
+
     @ApiOperation(value = "Login")
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public LoginRes Login(@RequestBody @Valid LoginInfo req){
