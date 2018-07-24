@@ -1,7 +1,6 @@
 package com.demo;
 
 import com.demo.Common.Filter.TokenFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -44,7 +43,7 @@ class DemoApplication {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         TokenFilter httpBearerFilter = new TokenFilter();
         registrationBean.setFilter(httpBearerFilter);
-        List<String> urlPatterns = new ArrayList();
+        List<String> urlPatterns = new ArrayList<>();
         urlPatterns.add("/token/xx");
         registrationBean.setUrlPatterns(urlPatterns);
         return registrationBean;

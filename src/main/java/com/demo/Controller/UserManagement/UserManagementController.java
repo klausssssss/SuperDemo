@@ -5,7 +5,6 @@ import com.demo.Model.Res.UserManagement.LoginRes;
 import com.demo.Repository.IRepository.IUserRepositpry;
 import com.demo.Service.IService.IUserManagementService.IUserManagementService;
 import io.swagger.annotations.ApiOperation;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +27,16 @@ import java.util.List;
 @RequestMapping("/UserManagement")
 public class UserManagementController {
 
-    @Autowired
     private IUserManagementService iUserManagementService;
-    @Autowired
+
     private IUserRepositpry iUserRepositpry;
+
+    @Autowired
+    private UserManagementController(IUserManagementService IUserManagementService
+    ,IUserRepositpry IUserRepositpry){
+        iUserManagementService = IUserManagementService;
+        iUserRepositpry = IUserRepositpry;
+    }
     @ApiOperation(value = "Login")
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public LoginRes Login(@RequestBody @Valid LoginInfo req){

@@ -16,8 +16,13 @@ import java.util.Map;
 @Service
 public class UserManagementService implements IUserManagementService {
 
-    @Autowired
+
     private IUserRepositpry iUserRepositpry;
+
+    @Autowired
+    private  UserManagementService(IUserRepositpry IUserRepositpry){
+        iUserRepositpry = IUserRepositpry;
+    }
 
     public LoginRes Login(LoginInfo req){
         LoginRes res = new LoginRes();

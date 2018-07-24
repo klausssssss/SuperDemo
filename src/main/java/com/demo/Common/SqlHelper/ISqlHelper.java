@@ -2,7 +2,6 @@ package com.demo.Common.SqlHelper;
 
 import org.springframework.lang.Nullable;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ISqlHelper {

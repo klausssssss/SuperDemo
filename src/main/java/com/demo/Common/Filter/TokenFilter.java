@@ -3,10 +3,8 @@ package com.demo.Common.Filter;
 import com.auth0.jwt.interfaces.Claim;
 import com.demo.Common.KeyHelper.KeyHelper;
 import com.demo.Common.UserContext;
-import com.demo.Model.Base.BaseResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.*;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.demo.Common.KeyHelper.KeyHelper.verifyJWT;
 
 public class TokenFilter implements Filter {
 

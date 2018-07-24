@@ -1,11 +1,5 @@
 package com.demo.Common.KeyHelper;
 
-
-
-
-
-
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -15,10 +9,8 @@ import com.demo.Common.UserContext;
 import org.apache.commons.codec.binary.Hex;
 import sun.misc.BASE64Encoder;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
+
 import java.io.UnsupportedEncodingException;
-import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -39,7 +31,7 @@ public class KeyHelper {
         Calendar nowTime = Calendar.getInstance();
         nowTime.add(Calendar.MINUTE, 999999);
         Date expiresDate = nowTime.getTime();
-        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put("alg", "HS256");
         map.put("typ", "JWT");
         return JWT.create()
@@ -71,15 +63,15 @@ public class KeyHelper {
         }
         BASE64Encoder base64en = new BASE64Encoder();
         //加密后的字符串
-        String newstr = null;
+        String newString = null;
         try {
-            newstr = base64en.encode(md5.digest(str.getBytes("utf-8")));
-            String salt = getSaltMD5(newstr);//加盐
-            newstr = base64en.encode(md5.digest((newstr+salt).getBytes("utf-8")));
+            newString = base64en.encode(md5.digest(str.getBytes("utf-8")));
+            String salt = getSaltMD5(newString);//加盐
+            newString = base64en.encode(md5.digest((newString+salt).getBytes("utf-8")));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return newstr;
+        return newString;
     }
 
     private static String getSaltMD5(String password) {
