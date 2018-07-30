@@ -2,6 +2,10 @@ package com.demo.Common;
 
 
 
+import com.alibaba.fastjson.JSON;
+import com.demo.Common.Cloneable.DeepClone;
+import org.apache.poi.ss.formula.functions.T;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -54,6 +58,7 @@ public class UserContext {
         instance.UserName = context.UserName;
     }
     public static UserContext getInstance(){
-        return  instance;
+        String json = JSON.toJSONString(instance);
+        return JSON.parseObject(json,UserContext.class);
     }
 }
