@@ -27,13 +27,12 @@ import java.util.concurrent.DelayQueue;
 @RestController
 @RequestMapping("/UserManagement")
 public class UserManagementController {
+
     @Autowired
     private IUserManagementService iUserManagementService;
     @Autowired
     private IUserRepositpry iUserRepositpry;
-
-    //DelayQueue r = new DelayQueue<Integer>();
-
+    
     @ApiOperation(value = "Login")
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public LoginRes Login(@RequestBody @Valid LoginInfo req){
