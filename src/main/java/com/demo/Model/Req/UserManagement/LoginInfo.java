@@ -2,8 +2,10 @@ package com.demo.Model.Req.UserManagement;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class LoginInfo {
+public class LoginInfo implements Serializable {
+    private static final long serailVersionId = 1L;
     //@NotBlank
     private String userName;
     //@NotBlank

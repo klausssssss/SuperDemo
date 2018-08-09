@@ -31,7 +31,6 @@ public class TokenFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        // TODO Auto-generated method stub
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String auth = httpRequest.getHeader("Authorization");
@@ -43,7 +42,6 @@ public class TokenFilter implements Filter {
                 if(token.containsKey("UserId"))context.setUserId(token.get("UserId").asString());
                 if(token.containsKey("DepartmentId"))context.setDepartmentId(token.get("DepartmentId").asString());
                 if(token.containsKey("DepartmentName"))context.setDepartmentName(token.get("DepartmentName").asString());
-
                 userContext.setUserContext(context);
 
                 chain.doFilter(request, response);

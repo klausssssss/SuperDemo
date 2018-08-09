@@ -14,13 +14,6 @@ import org.springframework.stereotype.Repository;
 public class UserRepositpry extends BaseRepository<User, String> implements IUserRepositpry {
     @Autowired
     public ISqlHelper iSqlHelper;
-    @Autowired
-    private StringRedisTemplate template;
-
-    public void setKey(String key,String value){
-         ValueOperations<String, String> ops = template.opsForValue();
-        ops.set(key,value);
-    }
 
     public User findUserInfo(String userName, String passWord) {
         return iSqlHelper.Select("*")

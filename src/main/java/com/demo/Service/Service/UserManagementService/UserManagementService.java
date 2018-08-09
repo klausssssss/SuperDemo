@@ -6,6 +6,7 @@ import com.demo.Common.UserContext;
 import com.demo.Model.Req.UserManagement.LoginInfo;
 import com.demo.Model.Res.UserManagement.LoginRes;
 import com.demo.Model.UserManagement.User;
+import com.demo.Repository.Base.IRedisRepository;
 import com.demo.Repository.IRepository.IUserRepositpry;
 import com.demo.Service.IService.IUserManagementService.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,11 @@ public class UserManagementService implements IUserManagementService {
 
     private IUserRepositpry iUserRepositpry;
 
+    private IRedisRepository iRedisRepository;
     @Autowired
-    private  UserManagementService(IUserRepositpry IUserRepositpry){
+    private  UserManagementService(IUserRepositpry IUserRepositpry
+    ,IRedisRepository IRedisRepository){
+        iRedisRepository = IRedisRepository;
         iUserRepositpry = IUserRepositpry;
     }
 
@@ -38,8 +42,8 @@ public class UserManagementService implements IUserManagementService {
         }
         context.setUserId(user.getUuid());
         context.setUserName(user.getUserName());
+        iRedisRepository.setKey(user.getUuid(),user.getUserName());
         res.setToken(KeyHelper.createJWT(context));
-        Map<String,Claim> a = KeyHelper.verifyJWT(KeyHelper.createJWT(context));
         res.setMsg("登录成功");
         return res;
     }
@@ -66,6 +70,7 @@ public class UserManagementService implements IUserManagementService {
 
         context.setUserId(registerUser.getUuid());
         context.setUserName(registerUser.getUserName());
+        iRedisRepository.setKey(user.getUuid(),user.getUserName());
         res.setToken(KeyHelper.createJWT(context));
         res.setMsg("注册成功");
         return res;

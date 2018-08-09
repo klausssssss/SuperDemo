@@ -1,7 +1,5 @@
 package com.demo.Common;
 
-
-
 import com.alibaba.fastjson.JSON;
 import com.demo.Common.Cloneable.DeepClone;
 import org.apache.poi.ss.formula.functions.T;
@@ -9,10 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 
 @Component
 //@Scope("prototype")
-public class UserContext {
+public class UserContext implements Serializable {
+
+    private static ThreadLocal<UserContext> loginEntityThreadLocal=new ThreadLocal<>();
+
     public String getUserId() {
         return UserId;
     }
@@ -49,16 +52,17 @@ public class UserContext {
     private String UserName;
     private String DepartmentId;
     private String DepartmentName;
-    private static UserContext instance;
-    public synchronized void setUserContext(UserContext context){
-        instance = new UserContext();
-        instance.DepartmentName = context.DepartmentName;
-        instance.DepartmentId = context.DepartmentId;
-        instance.UserId = context.UserId;
-        instance.UserName = context.UserName;
+
+
+    public static UserContext getUserContext() {
+        return loginEntityThreadLocal.get();
     }
-    public static UserContext getInstance(){
-        String json = JSON.toJSONString(instance);
-        return JSON.parseObject(json,UserContext.class);
+
+    public static void setUserContext(UserContext entity) {
+        loginEntityThreadLocal.set(entity);
+    }
+
+    public static void removeUserSession() {
+        loginEntityThreadLocal.remove();
     }
 }

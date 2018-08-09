@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/token")
 public class tokenController {
-    //@Autowired
-    //private UserContext userContext;
 
     @ApiOperation(value = "Login")
     @RequestMapping(value = "/xx", method = RequestMethod.POST)
     public void xx(@RequestBody LoginInfo info){
-        UserContext context = UserContext.getInstance();//必须在Controller层获取userContext，减少线程安全问题
+        UserContext context = UserContext.getUserContext();
 
     }
 }
