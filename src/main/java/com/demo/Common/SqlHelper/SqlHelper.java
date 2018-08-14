@@ -17,7 +17,11 @@ public  class SqlHelper implements  ISqlHelper{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private  StringBuilder sqlBuilder = new StringBuilder();
+    private  StringBuilder sqlBuilder;
+
+    public SqlHelper(){
+        sqlBuilder = new StringBuilder();
+    }
 
     public ISqlHelper Insert(String table,String column,String value){
         this.sqlBuilder.append("Insert into ");
